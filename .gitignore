@@ -1,0 +1,7 @@
+.vscode
+\test
+\target
+~$output.rtf
+.classpath
+.settings/
+.project

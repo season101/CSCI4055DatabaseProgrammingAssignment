@@ -1,0 +1,5 @@
+Compile Command
+javac JdbcExample.java
+
+Run Command
+java -cp .:/usr/lib/java-ext/jdbc/mysql-connector-java-5.1.48-bin.jar JdbcExample
