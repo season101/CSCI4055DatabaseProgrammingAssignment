@@ -19,7 +19,8 @@ public class Company {
             while (rs.next()) {
                 String DeptName = rs.getString("Dname");
                 if (!Dept.contains(DeptName)) {
-                    System.out.println(rs.getString("Dname") + " - " + rs.getString("MGR"));
+                    ResultSet empInfo = stmt.executeQuery("SELECT COUNT(DISTINCT Fname), SUM(Hours), Pname FROM EMPLOYEE, PROJECT, WORKS_ON WHERE Pname = 'ProductZ' AND Ssn = Essn AND Pnumber=Pno;");
+                    System.out.println(rs.getString("Dname") + " - " + rs.getString("MGR") + empInfo.getString("Pname"));
                     System.out.println(rs.getString("Pname"));
                     Dept.add(DeptName);
 
