@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.text.DecimalFormat;
 
+// {Page 1} Project Executive Summary
 public class Company {
     public static void main(String[] args) throws Exception {
         Connection con = DBConnection.getConnection();
@@ -23,9 +24,7 @@ public class Company {
 
             DecimalFormat formatter = new DecimalFormat("#,###.00");
             while (rs.next() && empInfo.next()) {
-                String DeptName = rs.getString("Dname");
-              
-                
+                String DeptName = rs.getString("Dname");                
                 if (!Dept.contains(DeptName)) {                
                     System.out.println(rs.getString("Dname") + " - " + rs.getString("MGR"));
                     System.out.printf("%-24s",rs.getString("Pname") +" ");
