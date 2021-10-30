@@ -17,18 +17,22 @@ public class Company {
             ResultSet rs = stmt.executeQuery(query);
 
             ArrayList<String> Dept = new ArrayList<>();
-            while (rs.next()) {
+
+            ResultSet empInfo = stmts.executeQuery("SELECT COUNT(DISTINCT Fname) AS num, SUM(Hours) AS hrs, Pname FROM EMPLOYEE, PROJECT, WORKS_ON, DEPARTMENT WHERE Ssn = Essn AND Pnumber=Pno AND Dnumber = Dnum GROUP BY Pname ORDER BY Dname,Pname;");
+
+            while (rs.next() && empInfo.next()) {
                 String DeptName = rs.getString("Dname");
-                ResultSet empInfo = stmts.executeQuery("SELECT COUNT(DISTINCT Fname) AS num, SUM(Hours) AS hrs, Pname FROM EMPLOYEE, PROJECT, WORKS_ON, DEPARTMENT WHERE Ssn = Essn AND Pnumber=Pno AND Dnumber = Dnum GROUP BY Pname ORDER BY Dname,Pname;");
-                empInfo.next();
-                if (!Dept.contains(DeptName)) {                   
+              
+                
+                if (!Dept.contains(DeptName)) {                
                     System.out.println(rs.getString("Dname") + " - " + rs.getString("MGR"));
-                    System.out.println(rs.getString("Pname" +" "+empInfo.getInt("num")));
+                    System.out.printf("%-24s",rs.getString("Pname") +" ");
+                    System.out.printf("%10d %15.1f\n",empInfo.getInt("num"),empInfo.getDouble("hrs"));
                     Dept.add(DeptName);
 
                 } else {
-                    
-                    System.out.println(rs.getString("Pname")+" "+empInfo.getInt("num"));
+                    System.out.printf("%-24s",rs.getString("Pname")+" ");
+                    System.out.printf("%10d %15.1f\n",empInfo.getInt("num"),empInfo.getDouble("hrs"));
                 }
 
             }
