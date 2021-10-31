@@ -22,34 +22,65 @@ public class ProjectDetails {
             String department;
             String project;
             DecimalFormat formatter = new DecimalFormat("$ #,###.00");
+            Boolean print;
+            print = false;
+            Double hora=0.0;
+            Double dinero=0.0;
             while (rs.next()) {
+                
                 department = rs.getString("Dname");
                 if (!departments.contains(department)) {
-                    System.out.println(department);
+                    
                     departments.add(department);
                     project = rs.getString("Pname");
-                    if (!projects.contains(project)) {                        
+                    if (!projects.contains(project)) {
+                        if(print){
+                            System.out.println("\t\t\t\t\t\t\t"+"-------------------------");
+                            System.out.println("\t\t\t\t\t\t\t"+hora+"\t"+formatter.format(dinero)+"\n");
+                            hora=0.0;
+                            dinero=0.0;
+                        } 
+                        System.out.println(department);                       
                         System.out.println("\t"+project+" ("+rs.getString("Plocation")+")");
                         projects.add(project);
+                        hora+= rs.getDouble("Hours");
+                        dinero+= rs.getDouble("FC");
                         System.out.printf("%20s%-30s%10.1f%20s%5s%-15s\n"," ",rs.getString("Name"),rs.getDouble("Hours"),formatter.format(rs.getDouble("FC"))," ",(rs.getString("Address")).toString().split(",")[1].strip());
+                        print = true;
                     }
                     else{
+                        hora+= rs.getDouble("Hours");
+                        dinero+= rs.getDouble("FC");
                         System.out.printf("%20s%-30s%10.1f%20s%5s%-15s\n"," ",rs.getString("Name"),rs.getDouble("Hours"),formatter.format(rs.getDouble("FC"))," ",(rs.getString("Address")).toString().split(",")[1].strip());
                     }
                 }
                 else {
                     project = rs.getString("Pname");
-                    if (!projects.contains(project)) {                        
+                    if (!projects.contains(project)) {   
+                        if (!projects.contains(project)) {
+                            if(print){
+                                System.out.println("\t\t\t\t\t\t\t"+"-------------------------");
+                                System.out.println("\t\t\t\t\t\t\t"+hora+"\t"+formatter.format(dinero)+"\n");
+                                hora=0.0;
+                                dinero=0.0;
+                            }          
+                        hora+= rs.getDouble("Hours");
+                        dinero+= rs.getDouble("FC");            
                         System.out.println("\t"+project+" ("+rs.getString("Plocation")+")");
                         projects.add(project);
                         System.out.printf("%20s%-30s%10.1f%20s%5s%-15s\n"," ",rs.getString("Name"),rs.getDouble("Hours"),formatter.format(rs.getDouble("FC"))," ",(rs.getString("Address")).toString().split(",")[1].strip());
+                        print = true;
+                        }
                     }
                     else{
+                        hora+= rs.getDouble("Hours");
+                        dinero+= rs.getDouble("FC");
                         System.out.printf("%20s%-30s%10.1f%20s%5s%-15s\n"," ",rs.getString("Name"),rs.getDouble("Hours"),formatter.format(rs.getDouble("FC"))," ",(rs.getString("Address")).toString().split(",")[1].strip());
                     }
                 }
             }
-
+            System.out.println("\t\t\t\t\t\t\t"+"-------------------------");
+            System.out.println("\t\t\t\t\t\t\t"+hora+"\t"+formatter.format(dinero)+"\n");
         }
     }
 }
