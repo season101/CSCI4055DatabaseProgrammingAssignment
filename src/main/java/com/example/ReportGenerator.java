@@ -6,6 +6,6 @@ public class ReportGenerator {
         System.out.println(ProjectExecutiveSummary.executeProjectExecutiveSummary());
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println("Project Details");
-        //System.out.println(ProjectDetails.executeProjectDetails());
+        System.out.println(ProjectDetails.executeProjectDetails());
     }
 }

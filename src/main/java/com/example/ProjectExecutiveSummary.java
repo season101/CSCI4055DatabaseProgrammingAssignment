@@ -28,16 +28,16 @@ public final class ProjectExecutiveSummary {
                 if (!Dept.contains(DeptName)) {
 
                     result.append(rs.getString("Dname") + " - " + rs.getString("MGR") + "\n");
-                    result.append(String.format("%-5s%-24s"," " ,rs.getString("Pname") + " "));
-                    result.append(String.format("%10d %15.1f%15s\n",empInfo.getInt("num"), empInfo.getDouble("hrs"),formatter.format(empInfo.getDouble("FC"))));
+                    result.append(String.format("%-4s%-24s"," " ,rs.getString("Pname") + " "));
+                    result.append(String.format("%6d %10.1f%15s\n",empInfo.getInt("num"), empInfo.getDouble("hrs"),formatter.format(empInfo.getDouble("FC"))));
 
                     Dept.add(DeptName);
 
                 }
 
                 else {
-                    result.append(String.format("%-5s%-24s"," ", rs.getString("Pname") + " "));
-                    result.append(String.format("%10d %15.1f%15s\n",empInfo.getInt("num"), empInfo.getDouble("hrs"),formatter.format(empInfo.getDouble("FC"))));
+                    result.append(String.format("%-4s%-24s"," ", rs.getString("Pname") + " "));
+                    result.append(String.format("%6d %10.1f%15s\n",empInfo.getInt("num"), empInfo.getDouble("hrs"),formatter.format(empInfo.getDouble("FC"))));
                 }
             }
         }
