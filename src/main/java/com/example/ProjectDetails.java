@@ -38,7 +38,7 @@ public final class ProjectDetails {
 
                         if (print) {
                             result.append(String.format("%32s%s\n", " ", "____________________________"));
-                            result.append(String.format("%38s%20s\n\n", hora, formatter.format(dinero)));
+                            result.append(String.format("%38s%20s\n", hora, formatter.format(dinero)));
                             hora = 0.0;
                             dinero = 0.0;
                         }
