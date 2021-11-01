@@ -6,6 +6,7 @@ public class ReportGenerator {
     public static void main(String[] args) throws Exception {
 
         System.out.println("Project Executive Summary");
+        
         Scanner in = new Scanner(ProjectExecutiveSummary.executeProjectExecutiveSummary());
         
         while(in.hasNextLine()){
@@ -18,7 +19,7 @@ public class ReportGenerator {
 
         Scanner ins = new Scanner(ProjectDetails.executeProjectDetails());
         while(ins.hasNextLine()){
-            System.out.println(in.nextLine());
+            System.out.println(ins.nextLine());
         }
         in.close();
         ins.close();
